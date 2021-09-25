@@ -8,14 +8,14 @@ class Card {
             if (productsStore.indexOf(id) !== -1){
                 htmlCatalog += `
                 <tr>
-                    <td>💥 ${name}</td>
-                    <td>${price.toLocaleString()} USD</td>
+                    <td class="card-element__name">💥 ${name}</td>
+                    <td class="card-element__price">${price.toLocaleString()} USD</td>
                 </tr>
                 `
             }
         })
         const html = `
-            <div>
+            <div class="card-container">
                 <table>
                     ${htmlCatalog}
                 </table>
