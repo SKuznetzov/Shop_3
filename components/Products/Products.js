@@ -4,6 +4,16 @@ class Products {
         this.labelAdd = 'В корзину'
         this.labelRemove = 'Удалить из корзины'
     }
+    handleSetLocationStorage(el,id){
+        const {pushProduct,products} = localStorageUtil.putProducts(id)
+        if (pushProduct) {
+            el.classList.add(this.classNameActive)
+            el.innerHTML = this.labelRemove
+        } else {
+            el.classList.remove(this.classNameActive)
+            el.innerHTML = this.labelAdd
+        }
+    }
     render(){
         const productsStore = localStorageUtil.getProducts()
         let htmlCatalog = ''
@@ -23,7 +33,10 @@ class Products {
                 <span class="products-element__name">${name}</span>
                 <img class="products-element__img" src="${img}" />
                 <span class="products-element__price">💥 ${price.toLocaleString()} usd</span>
-                <button class="products-element__btn${activeClass}">${activeText}</button>
+                <button class="products-element__btn${activeClass}"
+                onClick="productsPage.handleSetLocationStorage(this,'${id}')">
+                ${activeText}
+                </button>
             </li>`
         })
         const html = `
